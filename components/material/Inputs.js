@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, TextInput, StyleSheet } from 'react-native';
+import { View, TextInput } from 'react-native';
+import styles from './styles/inputs'
 
-const Input = ({ value, onChangeText, placeholder, secureTextEntry }) => {
+export default function Input({ value, onChangeText, placeholder, secureTextEntry }) {
   return (
     <View style={styles.inputContainer}>
       <TextInput
@@ -16,19 +17,4 @@ const Input = ({ value, onChangeText, placeholder, secureTextEntry }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  inputContainer: {
-    margin: 15,
-    borderColor: '#000000',
-    borderWidth: 1,
-    borderRadius: 5,
-    width:200,
-  },
-  input: {
-    height: 60,
-    padding: 10,
-    fontSize: 25,
-  },
-});
 
-export default Input;
