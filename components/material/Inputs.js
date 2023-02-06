@@ -1,17 +1,34 @@
-import { View, TextInput, Text } from 'react-native'
-import style from '../styles/inputs'
-import React from 'react'
+import React from 'react';
+import { View, TextInput, StyleSheet } from 'react-native';
 
-export default function Inputs() {
+const Input = ({ value, onChangeText, placeholder, secureTextEntry }) => {
   return (
-      <View style = { style.center}>
-        <View style = {style.subTitleContainer}>
-          <Text style = {style.subTitle}>Username</Text></View>
-        <TextInput style = { style.text } backgroundColor={'#323232'}></TextInput>
+    <View style={styles.inputContainer}>
+      <TextInput
+        value={value}
+        onChangeText={onChangeText}
+        placeholder={placeholder}
+        secureTextEntry={secureTextEntry}
+        autoCapitalize="characters"
+        style={styles.input}
+      />
+    </View>
+  );
+};
 
-      <View style = {style.subTitleContainer}>
-        <Text style = {style.subTitle}>Password</Text></View>
-        <TextInput style = { style.text } backgroundColor={'#323232'}></TextInput>
-      </View>
-  )
-}
+const styles = StyleSheet.create({
+  inputContainer: {
+    margin: 15,
+    borderColor: '#000000',
+    borderWidth: 1,
+    borderRadius: 5,
+    width:200,
+  },
+  input: {
+    height: 60,
+    padding: 10,
+    fontSize: 25,
+  },
+});
+
+export default Input;
