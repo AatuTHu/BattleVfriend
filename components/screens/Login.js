@@ -1,22 +1,53 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text } from 'react-native'
+import React, { useState } from 'react'
 import Inputs from '../material/Inputs'
 import Buttons from '../material/Buttons'
-import React from 'react'
+import Alerts from '../material/Alerts'
+import Lobby from './Lobby'
+import styles from './styles/login'
+
 
 export default function Login() {
+  const [username, setUsername] = useState()
+  const [showLobby, setShowLobby] = useState(false)
+  const [showAlert, setShowAlert] = useState(false)
+
+  const handleSubmit = () => {
+    if (!username){
+      setShowAlert(true)
+      return
+    }
+    setShowLobby(true)
+  }
+
+  if(showLobby) {
+    return <Lobby username={username}/>
+  }
+
   return (
     <View>
-      <Text style = {styles.subTitle}>Login</Text>
-        <Inputs/>
-      <Buttons/>
-    </View>
-  )
-}
+    { showAlert && (
+      <Alerts
+        title="Whoops!"
+        message="Please enter a username"
+        onConfirm={() => setShowAlert(false)}
+      />
+    )}
 
-const styles = StyleSheet.create({
-  subTitle: {
-    fontSize: 25,
-    textAlign: 'center',
-    justifyContent: 'center',
-  },
-})
+    <Text style = {styles.subTitle}>Enter your username</Text>
+
+      <Inputs
+        value={username}
+        onChangeText={text => setUsername(text)}
+        placeholder="GAMER123"
+        secureTextEntry={false}
+      />
+
+      <Buttons
+        title="LOGIN"
+        onPress={() => handleSubmit(true)}
+      />
+      
+  </View>
+)
+}

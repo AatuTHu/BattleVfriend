@@ -1,24 +1,19 @@
-import { View, StyleSheet,SafeAreaView } from 'react-native'
+import { View } from 'react-native'
 import Header from '../material/Header'
-import Register from '../screens/Register'
 import Login from '../screens/Login'
+import styles from './styles/controller'
 
 export default function Controller() {
 
   return(
-    <SafeAreaView>
+    <View style={styles.container}>
+
       <Header/>
-        <View style = { styles.container}> 
-        <Register/>
-      </View>
-    </SafeAreaView> 
+
+      <View style={styles.loginContainer}>
+        <Login/>
+      </View>  
+
+    </View>  
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    height: '100%',
-    backgroundColor: '#232323',
-    alignItems: 'center',
-  }
-})
