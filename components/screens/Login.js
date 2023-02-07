@@ -7,22 +7,19 @@ import Lobby from './Lobby'
 import styles from './styles/login'
 
 
-export default function Login() {
+export default function Login({setScreen, getName}) {
   const [username, setUsername] = useState()
-  const [showLobby, setShowLobby] = useState(false)
   const [showAlert, setShowAlert] = useState(false)
 
   const handleSubmit = () => {
     if (!username){
-      setShowAlert(true)
-      return
+      setShowAlert(true)  
+    } else {
+      setScreen(2)
+      getName(username)
     }
-    setShowLobby(true)
   }
 
-  if(showLobby) {
-    return <Lobby username={username}/>
-  }
 
   return (
     <View>
